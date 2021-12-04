@@ -1,3 +1,5 @@
+https://www.notion.so/hive-4e64292a92ea450096367bb93d226e0d
+
 https://artifacthub.io/packages/helm/gradiant/hive
 
 helm install my-hive gradiant/hive --version 0.1.6
