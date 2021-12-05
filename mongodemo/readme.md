@@ -1,0 +1,1 @@
+minikube service mongo-express-service
