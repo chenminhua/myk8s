@@ -30,7 +30,7 @@ minikube stop
 
 ```shell
 minikube start --nodes 3 --driver=virtualbox
-minikube start --nodes 3 --driver=virtualbox --extra-disks=1  (currently only implemented for
+minikube start --nodes 3 --driver=hyperkit --extra-disks=1  (currently only implemented for
 hyperkit and kvm2 drivers)
 vboxManage list vms
 ```

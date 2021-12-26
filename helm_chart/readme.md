@@ -6,3 +6,16 @@ tiller是helm的服务端，负责接收helm的请求，与k8s的api server进�
 helm打包的格式叫做chart，它描述了一组相关的k8s集群资源。
 使用helm install在k8s中部署的chart称为release。
 helm chart的仓库称为 Repository，helm客户端通过http访问repository中的chart
+
+## search on web
+[https://artifacthub.io/packages/search?ts_query_web=hive&page=1](https://artifacthub.io/packages/search?ts_query_web=hive&page=1)   
+
+## cmd
+```
+brew install helm
+helm repo add influxdata [https://helm.influxdata.com/](https://helm.influxdata.com/)
+helm search repo influxdata
+helm repo update
+helm install influxdata/influxdb --generate-name
+helm list
+```
