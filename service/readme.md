@@ -1,0 +1,3 @@
+clusterIP
+nodePort
+LoadBalancer
