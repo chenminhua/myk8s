@@ -1,0 +1,25 @@
+## kind
+create local k8s cluster with in docker
+
+kind create cluster --name clustername
+
+## kubectx
+switch k8s context
+
+## kubens
+switch k8s namespace
+
+## kail
+log for k8s
+
+## kube-shell
+
+## krew
+krew is a package manager for kubectl plugins
+
+## skaffold
+
+## podman
+
+## lens
+GUI or IDE?
