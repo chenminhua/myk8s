@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: book-pv-claim
+  labels:
+    app: conda-book
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,3 +34,10 @@ spec:
           args: ["-c", "$(JUPYTERCMD)"]
           ports:
             - containerPort: 8888
+          volumeMounts:
+            - mountPath: "/opt/notebooks"
+              name: book-persistent-storage
+      volumes:
+        - name: book-persistent-storage
+          persistentVolumeClaim:
+            claimName: book-pv-claim
