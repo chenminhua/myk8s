@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conda-book
+spec:
+  selector:
+    matchLabels:
+      app: conda-book
+  template:
+    metadata:
+      labels:
+        app: conda-book
+    spec:
+      containers:
+        - name: conda-book
+          image: continuumio/anaconda3
+          env:
+            - name: JUPYTERCMD
+              value: "/opt/conda/bin/conda install jupyter nb_conda -y --quiet && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+          command: ["bash"]
+          args: ["-c", "$(JUPYTERCMD)"]
+          ports:
+            - containerPort: 8888
