@@ -2,9 +2,11 @@
 
 ## step1 **安装istio命令行工具**
 
-Download https://github.com/istio/istio/releases， 并将bin加入path
-
-## step2**安装istio到K8s集群**
+```sh
+curl -sL https://istio.io/downloadIstioctl | sh -
+export PATH=$PATH:$HOME/.istioctl/bin
+```
+## step2 **安装istio到K8s集群**
 
 istio有很多[内置configuration profile](https://istio.io/latest/docs/setup/additional-setup/config-profiles/) ，分别设置了不同的control plane和data plane。我们也可以 [定制自己的profile](https://istio.io/latest/docs/setup/install/istioctl/#customizing-the-configuration) 。在这个quickstart中，我们安装demo profile（profile在[这里](https://github.com/istio/istio/blob/master/manifests/profiles/demo.yaml)）。可以看到安装了istio core, istiod, engressgateway, ingressgateway。一些相关的源码
 
