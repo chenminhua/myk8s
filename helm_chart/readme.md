@@ -68,6 +68,11 @@ SHOW TABLES;
 DESCRIBE invites;
 ALTER TABLE pokes ADD COLUMNS (new_col INT);
 ```
+### kafka
+```
+helm install my-kafka bitnami/kafka --version 13.0.2
+helm status my-kafka
+```
 
 ### shadowsocks
 
