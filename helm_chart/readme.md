@@ -70,8 +70,16 @@ ALTER TABLE pokes ADD COLUMNS (new_col INT);
 ```
 ### kafka
 ```
-helm install my-kafka bitnami/kafka --version 13.0.2
+helm install my-kafka bitnami/kafka --set volumePermissions.enabled=true --set zookeeper.volumePermissions.enabled=true
 helm status my-kafka
+```
+
+### mysql
+```
+helm install sql-release \
+  --set auth.rootPassword=secretpassword,auth.database=app_database \
+    bitnami/mysql
+helm status sql-release
 ```
 
 ### shadowsocks

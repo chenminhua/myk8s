@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maxwell
+spec:
+  selector:
+    matchLabels:
+      app: maxwell
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: maxwell
+    spec:
+      containers:
+        - name: maxwell
+          image: zendesk/maxwell
+          env:
+            - name: JUPYTERCMD
+              value: "bin/maxwell --log_level=debug  --user=replicator --password=1234qwer --host=sql-release-mysql-primary.default.svc.cluster.local --producer=kafka --kafka.bootstrap.servers=my-kafka.default.svc.cluster.local:9092 --kafka_topic=maxwell"
+          command: ["bash"]
+          args: ["-c", "$(JUPYTERCMD)"]

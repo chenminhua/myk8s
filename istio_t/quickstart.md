@@ -90,7 +90,8 @@ minikube tunnel
 
 ```jsx
 # uninstall the app
-kubectl delete -f [samples/addons](https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons)istioctl manifest generate --set profile=demo | kubectl delete --ignore-not-found=true -f -
+kubectl delete -f [samples/addons](https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons)
+istioctl manifest generate --set profile=demo | kubectl delete --ignore-not-found=true -f -
 kubectl delete namespace istio-system
 kubectl label namespace default istio-injection-
 
