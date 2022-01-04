@@ -1,4 +1,14 @@
+# 为什么需要service mesh
+
+- 服务发现
+- 流量管理（ab分流，灰度发布，流量拷贝，容灾切流）
+- 弹性服务（断路，限流，超时，重试）
+- 服务可见（监控，log，tracing，Dashboard）
+
+传统的方式通常需要侵入应用程序，比如服务依赖某sdk，或者在编译器内植入runtime，或者编译时改字节码等等，这些方法都侵入了应用程序，也就是--服务治理功能的升级需要升级服务本身。这违反了关注点分离原则，业务逻辑与服务治理不能单独开发，升级，部署，管理。Service mesh则简单地使用一个网络proxy的方式代理容器的入站与出站网络，从而把服务的控制逻辑与业务逻辑分离开来。对应用程序来说，这些治理能力的实现都是透明无感知的。
+
 # Quick Start
+https://istio.io/latest/docs/setup/getting-started/
 
 ## step1 **安装istio命令行工具**
 
@@ -25,6 +35,8 @@ k label namespace default istio-injection=enabled
 k describe ns default
 k api-resources
 kubectl api-resources | grep istio
+
+istioctl proxy-status
 ```
 
 ## step3 **部署demo**
