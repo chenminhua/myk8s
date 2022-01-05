@@ -116,3 +116,40 @@ istioctl dashboard kiali
 
 for i in $(seq 1 100); do curl -s -o /dev/null "http://192.168.64.8:30556/productpage"; done;
 ```
+
+
+**Metrics**
+
+我们预装了个istio addon，其实就是个预先配置好的prometheus，会主动去抓取istio的数据。
+
+`istioctl dashboard prometheus`
+
+[istio/istio](https://github.com/istio/istio/blob/master/istioctl/cmd/dashboard.go)  https://prometheus.io/docs/prometheus/latest/querying/basics/
+
+`istio_requests_total
+istio_requests_total{destination_service="productpage.default.svc.cluster.local"}
+istio_requests_total{destination_service="reviews.default.svc.cluster.local", destination_version="v3"}
+rate(istio_requests_total{destination_service=~"productpage.*", response_code="200"}[5m])`
+
+**Grafana**
+
+`istioctl dashboard grafana
+ while :; do curl -s -o /dev/null 192.168.99.100:32182/productpage;  done`
+
+[http://localhost:3000/dashboard/db/istio-mesh-dashboard](http://localhost:3000/dashboard/db/istio-mesh-dashboard)
+
+This gives the global view of the Mesh along with services and workloads in the mesh. You can get more details about services and workloads by navigating to their specific dashboards as explained below.
+
+http://localhost:3000/d/LJ_uJAvmk/istio-service-dashboard?orgId=1&refresh=1m
+
+http://localhost:3000/d/UbsSZTDik/istio-workload-dashboard?orgId=1&refresh=1m
+
+The Istio Dashboard consists of three main sections:
+
+1. A Mesh Summary View. This section provides Global Summary view of the Mesh and shows HTTP/gRPC and TCP workloads in the Mesh.
+2. Individual Services View. This section provides metrics about requests and responses for each individual service within the mesh (HTTP/gRPC and TCP). This also provides metrics about client and service workloads for this service.
+3. Individual Workloads View: This section provides metrics about requests and responses for each individual workload within the mesh (HTTP/gRPC and TCP). This also provides metrics about inbound workloads and outbound services for this workload.
+
+For more on how to create, configure, and edit dashboards, please see the [Grafana documentation](https://docs.grafana.org/).
+
+`k exec -ti details-v1-79f774bdb9-kkzxk -c istio-proxy /bin/sh`

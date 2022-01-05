@@ -1,6 +1,7 @@
 https://logz.io/blog/deploying-the-elk-stack-on-kubernetes-with-helm/
+https://kamrul.dev/deploy-efk-stack-with-helm-3-in-kubernetes/
 
-```
+```sh
 # add elastic's helm repo
 helm repo add elastic https://Helm.elastic.co
 

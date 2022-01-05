@@ -17,9 +17,19 @@ log for k8s
 ## krew
 krew is a package manager for kubectl plugins
 
+https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+
+https://krew.sigs.k8s.io/docs/user-guide/quickstart/
+
 ## skaffold
 
 ## podman
 
 ## lens
 GUI or IDE?
+
+## kubectl-debug
+
+## kubectl plugins
+
+https://kubernetes.io/zh/docs/tasks/extend-kubectl/kubectl-plugins/

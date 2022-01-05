@@ -263,3 +263,14 @@ spec:
 ## 参考
 https://istio.io/latest/docs/concepts/traffic-management/
 https://istio.io/latest/docs/ops/deployment/architecture/
+
+
+**源码解析**
+
+describe 一下 istiod 的pod发现其container就是polit
+
+其中 `pilot-agent` 负责数据面 `Sidecar` 实例的生命周期管理，而 `pilot-discovery` 负责控制面流量管理配置及路由规则的生成和下发。
+
+https://cloudnative.to/blog/istio-pilot/
+
+[架构](https://www.notion.so/0860866ad1514a25b107e192a5cc96cd)
