@@ -113,4 +113,6 @@ kubectl apply -f [samples/addons](https://raw.githubusercontent.com/istio/istio/
 
 ```jsx
 istioctl dashboard kiali
+
+for i in $(seq 1 100); do curl -s -o /dev/null "http://192.168.64.8:30556/productpage"; done;
 ```
