@@ -1,11 +1,12 @@
-## 容器化守护进程的意义：DaemonSet
+## DaemonSet的意义
 
-这个 DaemonSet，管理的是一个 fluentd-elasticsearch 镜像的 Pod。通过 fluentd 将 Docker 容器里的日志转发到 ElasticSearch 中。
+- 各种网络插件的agent，都必须运行在每一个node上。
+- 各种存储插件的agent，都必须运行在每一个node上。
+- 各种监控组件和日志组件，都必须运行在每一个node上。
 
-而这些 Pod 的模板，也是用 template 字段定义的。
-在这个字段中，我们定义了一个使用 fluentd-elasticsearch:1.20 镜像的容器，
-而且这个容器挂载了两个 hostPath 类型的 Volume，分别对应宿主机的/var/log 目录和/var/lib/docker/containers 目录。
-fluentd 启动之后，它会从这两个目录里搜集日志信息，并转发给 ElasticSearch 保存。
+daemonset开始运行的时机，很多时候比整个k8s集群还早。
+
+比如此目录下的这个 DaemonSet，管理的是一个 fluentd-elasticsearch 镜像的 Pod。通过 fluentd 将 Docker 容器里的日志转发到 ElasticSearch 中。这个容器挂载了两个 hostPath 类型的 Volume，分别对应宿主机的/var/log 目录和/var/lib/docker/containers 目录。fluentd 启动之后，它会从这两个目录里搜集日志信息，并转发给 ElasticSearch 保存。
 
 需要注意的是，Docker 容器里应用的日志，默认会保存在宿主机的/var/lib/docker/containers/{{.容器ID}}/{{.容器ID}}-json.log 文件里，
 
@@ -73,7 +74,7 @@ spec:
 
 **而通过这样一个 Toleration，调度器在调度这个 Pod 的时候，就会忽略当前节点上的“污点”，从而成功地将网络插件的 Agent 组件调度到这台机器上启动起来。**
 
-这种机制，正是我们在部署 Kubernetes 集群的时候，能够先部署 Kubernetes 本身、再部署网络插件的根本原因：因为当时我们所创建的 Weave 的 YAML，实际上就是一个 DaemonSet。
+这种机制，正是我们在部署 Kubernetes 集群的时候，能够先部署 Kubernetes 本身、再部署网络插件的根本原因。
 
 当然，**你也可以在 Pod 模板里加上更多种类的 Toleration，从而利用 DaemonSet 实现自己的目的**。比如，在这个 fluentd-elasticsearch DaemonSet 里，我就给它加上了这样的 Toleration：
 
