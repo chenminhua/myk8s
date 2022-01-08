@@ -3,3 +3,4 @@ bitnami
 istio
 bigdata-charts
 client-go
+vitess/vitess

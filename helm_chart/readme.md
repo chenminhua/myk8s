@@ -76,10 +76,10 @@ helm status my-kafka
 
 ### mysql
 ```
-helm install sql-release \
-  --set auth.rootPassword=secretpassword,auth.database=app_database \
+helm install sq --set volumePermissions.enabled=true \
+  --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true \
     bitnami/mysql
-helm status sql-release
+helm status sq
 ```
 
 ### shadowsocks

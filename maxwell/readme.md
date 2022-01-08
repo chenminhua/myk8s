@@ -4,6 +4,8 @@
 helm install sql-release --set auth.replicationPassword=1234qwer --set volumePermissions.enabled=true \
   --set auth.rootPassword=secretpassword,auth.database=app_database --set architecture=replication bitnami/mysql
 
+helm install pma bitnami/phpmyadmin
+
 ## run kafka
 helm install my-kafka bitnami/kafka --set volumePermissions.enabled=true --set zookeeper.volumePermissions.enabled=true
 

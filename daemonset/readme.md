@@ -87,3 +87,5 @@ spec:
 ## 总结
 - DaemonSet通过 nodeAffinity 和 Toleration 这两个调度器的小功能，保证了每个节点上有且只有一个 Pod。
 - DaemonSet 使用 ControllerRevision，来保存和管理自己对应的“版本”。
+
+
