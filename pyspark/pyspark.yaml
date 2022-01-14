@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyspark-book
+spec:
+  selector:
+    matchLabels:
+      app: pyspark-book
+  template:
+    metadata:
+      labels:
+        app: pyspark-book
+    spec:
+      containers:
+        - name: pyspark-book
+          image: jupyter/pyspark-notebook
+          ports:
+            - containerPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyspark-book
+spec:
+  type: LoadBalancer
+  selector:
+    app: pyspark-book
+  ports:
+    - name: default
+      protocol: TCP
+      port: 80
+      targetPort: 8888

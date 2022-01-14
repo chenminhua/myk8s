@@ -55,7 +55,7 @@ https://www.notion.so/hive-4e64292a92ea450096367bb93d226e0d
 
 https://artifacthub.io/packages/helm/gradiant/hive
 
-helm install my-hive gradiant/hive --version 0.1.6
+helm install my-hive gradiant/hive --version 0.1.6 --set metastore.postgresql.volumePermissions.enabled=true
 
 进 hive-server 容器
 k exec -ti my-hive-server-0 --sh
@@ -63,6 +63,8 @@ k exec -ti my-hive-server-0 --sh
 beeline -u jdbc:hive2://localhost:10000
 
 CREATE TABLE pokes (foo INT, bar STRING);
+insert into pokes (foo, bar) values (1, "hello"), (2, "world");
+
 CREATE TABLE invites (foo INT, bar STRING) PARTITIONED BY (ds STRING);
 SHOW TABLES;
 DESCRIBE invites;
