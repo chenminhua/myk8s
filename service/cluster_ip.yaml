@@ -18,3 +18,16 @@ spec:
         ports:
         - containerPort: 9376
           protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hostnames
+spec:
+  selector:
+    app: hostnames
+  ports:
+  - name: default
+    protocol: TCP
+    port: 80
+    targetPort: 9376
