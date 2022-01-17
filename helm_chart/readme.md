@@ -49,6 +49,11 @@ kubectl proxy
 helm install etcd --set volumePermissions.enabled=true --set replicaCount=3 bitnami/etcd
 ```
 
+### hbase
+```
+helm install my-hbase gradiant/hbase --version 0.1.6 --set zookeeper.volumePermissions.enabled=true
+```
+
 ### hive
 ```sh
 https://www.notion.so/hive-4e64292a92ea450096367bb93d226e0d
@@ -82,6 +87,11 @@ helm install sq --set volumePermissions.enabled=true \
   --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true \
     bitnami/mysql
 helm status sq
+```
+
+### redis-cluster
+```
+helm install rc bitnami/redis-cluster --set volumePermissions.enabled=true
 ```
 
 ### shadowsocks

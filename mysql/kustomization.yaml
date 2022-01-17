@@ -1,6 +1,0 @@
-secretGenerator:
-    - name: mysql-pass
-      literals:
-      - password=GR<9ck!C1234
-resources:
-    - deploy.yaml

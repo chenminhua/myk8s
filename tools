@@ -33,3 +33,7 @@ GUI or IDE?
 ## kubectl plugins
 
 https://kubernetes.io/zh/docs/tasks/extend-kubectl/kubectl-plugins/
+
+## telepresence
+brew install datawire/blackbird/telepresence
+
