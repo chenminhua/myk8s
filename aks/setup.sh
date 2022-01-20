@@ -1,7 +1,7 @@
 # variables
 region=eastasia
-groupname=closet
-aksname=clk8s
+groupname=mh
+aksname=minhua1
 nodecount=1
 node_vm_size=Standard_D2s_v3
 acrname=clarc
@@ -24,11 +24,11 @@ az aks get-credentials -g $groupname -n $aksname
 
 
 # create azure container registry
-az acr create -g $groupname -n $acrname --sku $acrsku
-az acr login -n $acrname
+#az acr create -g $groupname -n $acrname --sku $acrsku
+#az acr login -n $acrname
 # enable admin login
-az acr update -n $acrname --admin-enable true
+#az acr update -n $acrname --admin-enable true
 # docker login clarc.azurecr.io
 
 # integrate aks and acr
-az aks update -n $aksname -g $groupname --attach-acr $acrname
+#az aks update -n $aksname -g $groupname --attach-acr $acrname
