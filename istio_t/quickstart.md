@@ -86,28 +86,9 @@ minikube tunnel
 可以 K logs 查看下日志
 ```
 
-# Quick Cleanup
-
-```jsx
-# uninstall the app
-kubectl delete -f [samples/addons](https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons)
-istioctl manifest generate --set profile=demo | kubectl delete --ignore-not-found=true -f -
-kubectl delete namespace istio-system
-kubectl label namespace default istio-injection-
-
-# uninsatll istio
-istioctl x uninstall --purge
-```
-
 # Addons
 
 **装插件  kiali, prometheus, grafana, jaeger**
-
-```jsx
-kubectl apply -f [samples/addons](https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons)
-```
-
-"If there are errors trying to install the addons, try running the command again. There may be some timing issues which will be resolved when the command is run again."
 
 ## **Dashboard kiali**
 
