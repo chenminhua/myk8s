@@ -38,12 +38,6 @@ https://cert-manager.io/docs/installation/helm/
 helm install consul --set volumePermissions.enabled=true bitnami/consul
 ```
 
-### dashboard
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yamldd
-kubectl proxy
-```
 ### etcd
 ```sh
 helm install etcd --set volumePermissions.enabled=true --set replicaCount=3 bitnami/etcd
@@ -94,12 +88,6 @@ helm status sq
 helm install rc bitnami/redis-cluster --set volumePermissions.enabled=true
 ```
 
-### shadowsocks
-
-```sh
-helm repo add predatorray http://predatorray.github.io/charts
-helm upgrade --install shadowsocks predatorray/shadowsocks \\n    --set service.type=LoadBalancer --set shadowsocks.password.plainText=1234qwer
-```
 
 ### zookeeper
 
