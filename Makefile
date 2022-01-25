@@ -20,3 +20,12 @@ shadowsocks:
 	helm repo add predatorray http://predatorray.github.io/charts
 	helm upgrade --install shadowsocks predatorray/shadowsocks --set service.type=LoadBalancer --set shadowsocks.password.plainText=1234qwer
 	kubectl get svc
+
+mysql:
+	helm install sq --set volumePermissions.enabled=true --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true bitnami/mysql
+
+mysql-lb:
+	helm install sq --set volumePermissions.enabled=true --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true bitnami/mysql --set primary.service.type=LoadBalancer
+
+grafana:
+	helm install gf grafana/grafana 

@@ -1,16 +1,18 @@
-helm 是 k8s 的包管理工具。由服务端组件tiller和客户端helm组成。
-helm能将一组k8s资源打包统一管理，共享。
+helm 是 k8s 的包管理工具。由服务端组件 tiller 和客户端 helm 组成。
+helm 能将一组 k8s 资源打包统一管理，共享。
 
-helm是客户端工具，用于本地开发和管理chart。
-tiller是helm的服务端，负责接收helm的请求，与k8s的api server进行交互。根据chart 来生成release并管理release。
-helm打包的格式叫做chart，它描述了一组相关的k8s集群资源。
-使用helm install在k8s中部署的chart称为release。
-helm chart的仓库称为 Repository，helm客户端通过http访问repository中的chart
+helm 是客户端工具，用于本地开发和管理 chart。
+tiller 是 helm 的服务端，负责接收 helm 的请求，与 k8s 的 api server 进行交互。根据 chart 来生成 release 并管理 release。
+helm 打包的格式叫做 chart，它描述了一组相关的 k8s 集群资源。
+使用 helm install 在 k8s 中部署的 chart 称为 release。
+helm chart 的仓库称为 Repository，helm 客户端通过 http 访问 repository 中的 chart
 
 ## search on web
-[https://artifacthub.io/packages/search?ts_query_web=hive&page=1](https://artifacthub.io/packages/search?ts_query_web=hive&page=1)   
+
+[https://artifacthub.io/packages/search?ts_query_web=hive&page=1](https://artifacthub.io/packages/search?ts_query_web=hive&page=1)
 
 ## cmd
+
 ```
 brew install helm
 helm repo add influxdata [https://helm.influxdata.com/](https://helm.influxdata.com/)
@@ -21,7 +23,9 @@ helm list
 ```
 
 ## charts
+
 ### cert-manager
+
 ```sh
 https://cert-manager.io/docs/installation/helm/
 
@@ -39,16 +43,19 @@ helm install consul --set volumePermissions.enabled=true bitnami/consul
 ```
 
 ### etcd
+
 ```sh
 helm install etcd --set volumePermissions.enabled=true --set replicaCount=3 bitnami/etcd
 ```
 
 ### hbase
+
 ```
 helm install my-hbase gradiant/hbase --version 0.1.6 --set zookeeper.volumePermissions.enabled=true
 ```
 
 ### hive
+
 ```sh
 https://www.notion.so/hive-4e64292a92ea450096367bb93d226e0d
 
@@ -69,25 +76,25 @@ SHOW TABLES;
 DESCRIBE invites;
 ALTER TABLE pokes ADD COLUMNS (new_col INT);
 ```
+
 ### kafka
+
 ```
 helm install my-kafka bitnami/kafka --set volumePermissions.enabled=true --set zookeeper.volumePermissions.enabled=true
 helm status my-kafka
 ```
 
 ### mysql
+
 ```
-helm install sq --set volumePermissions.enabled=true \
-  --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true \
-    bitnami/mysql
 helm status sq
 ```
 
 ### redis-cluster
+
 ```
 helm install rc bitnami/redis-cluster --set volumePermissions.enabled=true
 ```
-
 
 ### zookeeper
 
@@ -102,4 +109,3 @@ helm install zk --set volumePermissions.enabled=true --set replicaCount=3 bitnam
 
 helm status zk
 ```
-
