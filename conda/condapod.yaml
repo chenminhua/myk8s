@@ -41,3 +41,15 @@ spec:
         - name: book-persistent-storage
           persistentVolumeClaim:
             claimName: book-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: conda-book
+spec:
+  type: LoadBalancer
+  selector:
+    app: conda-book
+  ports:
+    - port: 80
+      targetPort: 8888
