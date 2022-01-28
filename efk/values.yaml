@@ -17,7 +17,34 @@ resources:
 # Request smaller persistent volumes.
 volumeClaimTemplate:
   accessModes: [ "ReadWriteOnce" ]
-  storageClassName: "default"
+  storageClassName: "standard"
   resources:
     requests:
       storage: 100M
+
+persistence:
+  enabled: false
+extraVolumes:
+- name: data
+  hostPath:
+    path: /data/pv0001/
+extraVolumeMounts:
+- name: data
+  mountPath: /usr/share/elasticsearch/data
+extraInitContainers: |
+   - name: create
+     image: busybox:1.28
+     command: ['mkdir', '-p', '/usr/share/elasticsearch/data/nodes/']
+     securityContext:
+       runAsUser: 0
+     volumeMounts:
+      - mountPath: /usr/share/elasticsearch/data
+        name: data
+   - name: file-permissions
+     image: busybox:1.28
+     command: ['chown', '-R', '1000:1000', '/usr/share/elasticsearch/']
+     securityContext:
+        runAsUser: 0
+     volumeMounts:
+      - mountPath: /usr/share/elasticsearch/data
+        name: data

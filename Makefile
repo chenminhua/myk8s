@@ -37,6 +37,13 @@ conda:
 	kubectl apply -f ./conda/condapod.yaml
 
 ########## storeage, mq ###############
+# 这个charts是production ready的，对本地k8s集群不友好，参考 https://github.com/elastic/helm-charts/tree/main/elasticsearch/examples/minikube,
+# 参考 https://github.com/elastic/helm-charts/issues/644
+# k port-forward svc/elasticsearch-master 9201:9200
+# curl localhost:9201
+elasticsearch:
+	helm install es elastic/elasticsearch -f ./efk/values.yaml
+
 etcd:
 	helm install etcd --set volumePermissions.enabled=true --set replicaCount=3 bitnami/etcd
 

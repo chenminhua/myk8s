@@ -9,7 +9,7 @@ helm repo add elastic https://Helm.elastic.co
 curl -O https://raw.githubusercontent.com/elastic/Helm-charts/master/elasticsearch/examples/minikube/values.yaml
 
 # install elk
-helm install elasticsearch elastic/elasticsearch -f ./values.yaml
+helm install elasticsearch elastic/elasticsearch --values ./values.yaml
 
 1. Watch all cluster members come up.
   $ kubectl get pods --namespace=default -l app=elasticsearch-master -w
@@ -25,5 +25,5 @@ kubectl port-forward svc/elasticsearch-master 9200
 ```
 helm install kibana elastic/kibana
 
-kubectl port-forward deployment/kibana-kibana 5601 
+kubectl port-forward deployment/kibana-kibana 5601
 ```
