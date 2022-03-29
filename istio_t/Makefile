@@ -26,6 +26,16 @@ cleanup:
 
 bookinfo:
 	kubectl apply -f ../istio/samples/bookinfo/platform/kube/bookinfo.yaml
+# kubectl exec "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl -s productpage:9080/productpage
+
+bookinfo_ingress:
+	kubectl apply -f ../istio/samples/bookinfo/networking/bookinfo-gateway.yaml
+# k get vs,gateway;   
+# istioctl analyze
 
 quickstart:
 	open https://istio.io/latest/docs/setup/getting-started/
+
+install_istio_cli:
+	curl -sL https://istio.io/downloadIstioctl | sh -
+	export PATH=$PATH:$HOME/.istioctl/bin

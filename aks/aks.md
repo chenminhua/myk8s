@@ -102,3 +102,11 @@ az aks create -g level -n lk8s --node-count 1 --node-vm-size Standard_D2s_v3 --g
 # 如果你有多个aks cluster可以查看
 az aks list -o table
 ```
+
+# 如果机器down机了怎么办？
+
+az vmss restart -g MC_mh_minhua1_eastasia -n  aks-nodepool1-13336345-vmss --instance-ids 0
+
+# 如何debug node
+
+k debug node/aks-nodepool1-13336345-vmss000000 -ti --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11

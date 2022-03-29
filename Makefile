@@ -1,6 +1,13 @@
+UNAME_S := $(shell uname -s)
 startup:
+ifeq ($(UNAME_S),Darwin)
 	minikube start --nodes 3 --driver=hyperkit --extra-disks=1 --memory=3g
+endif
+ifeq ($(UNAME_S),Linux)
+	minikube start --nodes 3 --driver=virtualbox --memory=3g
+endif
 	k apply -f metrics-server/components.yaml
+	
 
 deps:
 	git clone git@github.com:rook/rook.git
@@ -23,6 +30,9 @@ grafana:
 ############### service #####################
 consul:
 	helm install consul --set volumePermissions.enabled=true bitnami/consul
+
+nginx:
+	helm install ng bitnami/nginx
 
 shadowsocks:
 	helm repo add predatorray http://predatorray.github.io/charts
@@ -56,6 +66,9 @@ hive:
 kafka:
 	helm install my-kafka bitnami/kafka --set volumePermissions.enabled=true --set zookeeper.volumePermissions.enabled=true
 
+mongo:
+	helm install mg bitnami/mongodb --set volumePermissions.enabled=true
+
 mysql:
 	helm install sq --set volumePermissions.enabled=true --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true bitnami/mysql
 
@@ -63,6 +76,9 @@ mysql-lb:
 	helm install sq --set volumePermissions.enabled=true --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true bitnami/mysql --set primary.service.type=LoadBalancer
 
 redis:
+	helm install redis bitnami/redis --set volumePermissions.enabled=true
+
+redis-cluster:
 	helm install rc bitnami/redis-cluster --set volumePermissions.enabled=true
 
 zookeeper:
