@@ -75,6 +75,9 @@ mysql:
 mysql-lb:
 	helm install sq --set volumePermissions.enabled=true --set auth.rootPassword=secretpassword,auth.database=app_database --set metrics.enabled=true bitnami/mysql --set primary.service.type=LoadBalancer
 
+pg:
+	helm install pg bitnami/postgresql --set volumePermissions.enabled=true
+
 redis:
 	helm install redis bitnami/redis --set volumePermissions.enabled=true
 
