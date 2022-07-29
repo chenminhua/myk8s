@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: godemo
+spec:
+  selector:
+    matchLabels:
+      app: godemo
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: godemo
+    spec:
+      containers:
+      - name: godemo
+        image: chenmhgo/godemo:2.0
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: godemo
+spec:
+  selector:
+    app: godemo
+  ports:
+  - name: default
+    protocol: TCP
+    port: 80
+    targetPort: 8080
